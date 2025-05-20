@@ -8,7 +8,7 @@ import {
 import { BsBag } from "react-icons/bs";
 
 export const menuItems = [
-    { name: 'Home', icon: FiHome, link: 'home'},
+    { name: 'Home', icon: FiHome, link: '/'},
     { name: 'Product', icon: BsBag , link: 'product'},
     { name: 'Categories', icon: FiGrid, link: 'category'},
     { name: 'Favorites', icon: FiHeart, link: 'favourite' },

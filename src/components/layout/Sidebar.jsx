@@ -28,16 +28,16 @@ const Sidebar = () => {
   return (
     <div
       className={`h-full backdrop-blur-2xl transition-all duration-400 ease-in-out flex-shrink-0
-        ${isCollapsed ? 'w-20' : 'w-64'}`}
+        ${isCollapsed ? 'w-15' : 'w-64'}`}
     >
       {/* Sidebar Menu */}
-      <nav className="py-3 pl-4 overflow-y-scroll scroll">
+      <nav className="py-3 pl-1 overflow-y-scroll scroll">
         <ul className="space-y-2 ">
           {menuItems.map((item) => (
             <li title={`${isCollapsed ? item.name: ''}`} key={item.name}>
               <Link to={item.link}
                 className={`flex items-center w-full p-3 transition cursor-pointer hover:translate-x-0.5 active:translate-x-1 rounded-l-lg
-                  ${active.startsWith('/'+item.link) ? 'bg-white text-blue-600' : 'hover:bg-gray-100 text-gray-700'}
+                  ${active.startsWith('/'+item.link) ? 'bg-white text-blue-600' : 'hover:bg-blue-300 text-gray-700'}
                   ${isCollapsed ? 'justify-center' : ''}`}
               >
                 <item.icon size={20} />
