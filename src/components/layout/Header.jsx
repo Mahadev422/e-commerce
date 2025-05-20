@@ -5,6 +5,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
   const [search, setSearch] = useState(false);
+  const [log, setLog] = useState(false);
 
   const url = useLocation();
   const path = url.pathname;
@@ -13,7 +14,7 @@ const Header = () => {
     <>
     <header className="fixed h-[50px] top-0 left-0 right-0 flex justify-between items-center px-8 py-4 backdrop-blur-2xl shadow-sm z-50">
       {/* Left side - Name */}
-      <Link to='/home' className="text-2xl font-bold">ShopEase</Link>
+      <Link to='/' className="text-2xl font-bold">ShopEase</Link>
 
       {/* Right side - Icons */}
       <div className="flex items-center gap-5">
@@ -37,10 +38,10 @@ const Header = () => {
 
         {/* Profile */}
         <div className={`flex items-center ${path.startsWith('/user-profil') ? 'bg-blue-300 text-blue-800' : 'bg-blue-100'} bg-blue-100 rounded-t-xl gap-2 p-1`}>
-          {false ? <Link to='user-profile' className="h-8 w-8 rounded-full flex items-center justify-center font-semibold">
+          {log ? <Link to='user-profile' className="h-8 w-8 rounded-full flex items-center justify-center font-semibold">
             <CgProfile />
           </Link> :
-          <Link to='/' className='px-2 font-bold p-1 rounded'>Login</Link>}
+          <Link onClick={() => setLog(true)} className='px-2 font-bold p-1 rounded'>Login</Link>}
         </div>
       </div>
     </header>

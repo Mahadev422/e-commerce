@@ -31,7 +31,7 @@ const Sidebar = () => {
         ${isCollapsed ? 'w-15' : 'w-64'}`}
     >
       {/* Sidebar Menu */}
-      <nav className="py-3 pl-1 overflow-y-scroll scroll">
+      <nav className="py-3 pl-2 overflow-y-scroll scroll">
         <ul className="space-y-2 ">
           {menuItems.map((item) => (
             <li title={`${isCollapsed ? item.name: ''}`} key={item.name}>
