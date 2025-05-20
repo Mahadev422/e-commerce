@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   useEffect(() => { 
     const handleResize = () => {
-      const mobile = window.innerWidth < 650;
+      const mobile = window.innerWidth < 700;
       if (mobile) {
         setIsCollapsed(true); // Auto-collapse on mobile
       } else {

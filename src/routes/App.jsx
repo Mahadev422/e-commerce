@@ -6,13 +6,15 @@ import NotificationSystem from '../components/extra/NotificationSystem';
 import { initializeProduct } from '../store/slices/productSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { fetchProducts } from '../store/fetch/products';
 
 function App() {
   const url = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initializeProduct());
+    //dispatch(initializeProduct());
+    dispatch(fetchProducts());
   },[0])
 
 

@@ -25,7 +25,6 @@ const ProductProfile = () => {
   return (
     <div className="min-h-screen p-2 m-2">
       <div className="mx-auto">
-        <Link className='fixed text-2xl font-bold top-14 z-50 bg-green-500 px-1 rounded' to='/product'><IoReturnDownBack /></Link>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Images */}
           <ProductImage product={product} />
