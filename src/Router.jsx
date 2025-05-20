@@ -14,6 +14,7 @@ import UserDetails from './components/profile-comp/UserDetails';
 import FavouritePage from './routes/FavouritePage';
 import ProductListPage from './routes/ProductListPage';
 import CartPage from './routes/CartPage';
+import ProductProfile from './routes/ProductProfile';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
@@ -32,6 +33,7 @@ export const Router = createBrowserRouter([
       {path: 'preference', element: <Preference />}
     ]},
     {path: 'favourite', element: <FavouritePage />},
+    {path: 'product/:id', element: <ProductProfile />},
   ]}
 ],
 {basename: '/e-commerce'}

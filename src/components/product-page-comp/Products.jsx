@@ -13,12 +13,8 @@ const Products = ({ sortedProducts }) => {
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              transition: { delay: index * 0.05, duration: 0.3 }
-            }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0}}
+            transition={{duration: 0.3, delay: 0.1*index}}
             className="flex-auto w-[300px] rounded-lg shadow-sm overflow-hidden hover:shadow-md hover:scale-[0.98] transition bg-white"
           >
             {/* Product image */}

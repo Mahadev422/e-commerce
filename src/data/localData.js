@@ -82,7 +82,7 @@ export const featureProduct = [
 
 export const products = [
     {
-      id: 1,
+      _id: 1,
       name: 'Premium Wireless Headphones',
       price: 199.99,
       discountPrice: 149.99,
@@ -111,7 +111,7 @@ export const products = [
       sku: 'HP-X9000-BK'
     },
     {
-      id: 2,
+      _id: 2,
       name: 'Smart Watch Pro',
       price: 249.99,
       discountPrice: 199.99,
@@ -139,7 +139,7 @@ export const products = [
       sku: 'SW-PRO-2023'
     },
     {
-      id: 3,
+      _id: 3,
       name: 'Performance Running Shoes',
       price: 89.99,
       discountPrice: null,
@@ -167,7 +167,7 @@ export const products = [
       sku: 'RF-5000-RUN'
     },
     {
-      id: 4,
+      _id: 4,
       name: 'Genuine Leather Wallet',
       price: 49.99,
       discountPrice: 39.99,
@@ -195,7 +195,7 @@ export const products = [
       sku: 'LC-WALLET-01'
     },
     {
-      id: 5,
+      _id: 5,
       name: 'Premium Yoga Mat',
       price: 29.99,
       discountPrice: null,
@@ -223,7 +223,7 @@ export const products = [
       sku: 'ZY-MAT-2023'
     },
     {
-      id: 6,
+      _id: 6,
       name: 'Portable Bluetooth Speaker',
       price: 79.99,
       discountPrice: 59.99,
@@ -251,7 +251,7 @@ export const products = [
       sku: 'SW-SPK-250'
     },
     {
-      id: 7,
+      _id: 7,
       name: 'Wireless Earbuds Pro',
       price: 129.99,
       discountPrice: 99.99,
@@ -279,7 +279,7 @@ export const products = [
       sku: 'AM-EARBUDS-PRO'
     },
     {
-      id: 8,
+      _id: 8,
       name: 'Fitness Tracker Band',
       price: 59.99,
       discountPrice: 49.99,

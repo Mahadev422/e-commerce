@@ -77,7 +77,7 @@ const SlidingHeroSection = () => {
   };
 
   return (
-    <div className="relative w-full h-[60vh] max-h-[600px] overflow-hidden">
+    <div className="relative mb-10 w-full h-[60vh] max-h-[600px] overflow-hidden">
       <AnimatePresence custom={direction} initial={false}>
         <motion.div
           key={slides[currentSlide].id}
