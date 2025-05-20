@@ -7,10 +7,12 @@ import Security from './components/seting-comp/Security';
 import Notification from './components/seting-comp/Notification';
 import Billing from './components/seting-comp/Billing';
 import Preference from './components/seting-comp/Preference';
+import CategoriesPage from './routes/CategoriesPage';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
     {index: true, element: <HomePage />},
+    {path: 'category', element: <CategoriesPage />},
     {path: 'setting', element: <SettingsPage />, children: [
       {index: true, element: <Security />},
       {path: 'notification', element: <Notification />},

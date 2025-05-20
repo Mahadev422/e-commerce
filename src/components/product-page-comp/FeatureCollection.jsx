@@ -1,8 +1,6 @@
 import { featureProduct } from "../../data/localData";
 
-
 const FeatureCollection = () => {
-
 
   return (
     <div className="mt-16">
