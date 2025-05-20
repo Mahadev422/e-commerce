@@ -7,4 +7,5 @@ export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
     {index: true, element: <HomePage />}
   ]}
-]);
+],
+{basename: '/e-commerce'});
