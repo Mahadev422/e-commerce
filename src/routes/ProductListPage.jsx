@@ -4,14 +4,16 @@ import Products from '../components/product-page-comp/Products';
 import SortOptions from '../components/filter-comp/SortOptions';
 import CategoryOptions from '../components/filter-comp/CategoryOptions';
 import CategoryOptionsTab from '../components/filter-comp/CategoryOptionsTab';
+import Loader from '../components/extra/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
-  const filterProducts = useSelector((state) => state.products.totalProducts);
+  const { totalProducts, loading } = useSelector((state) => state.products);
+  const filterProducts = [...totalProducts];
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-
+  if(loading) return <Loader />
   return (
     <div className="min-h-screen">
       <div className="mx-auto mb-2 sm:px-6 lg:px-8">

@@ -15,6 +15,7 @@ import FavouritePage from './routes/FavouritePage';
 import ProductListPage from './routes/ProductListPage';
 import CartPage from './routes/CartPage';
 import ProductProfile from './routes/ProductProfile';
+import LoginPage from './routes/LoginPage';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
@@ -34,7 +35,8 @@ export const Router = createBrowserRouter([
     ]},
     {path: 'favourite', element: <FavouritePage />},
     {path: 'product/:id', element: <ProductProfile />},
-  ]}
+  ]},
+  {path: 'log-in', element: <LoginPage />}
 ],
 {basename: '/e-commerce'}
 );

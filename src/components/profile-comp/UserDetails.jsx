@@ -8,8 +8,8 @@ const UserDetails = () => {
   const addressRef = useRef();
   const phoneRef = useRef();
   const dispatch = useDispatch();
-
-  const userData = {};
+  const { userDetails } = useSelector((state) => state.auth);
+  const userData = {...userDetails};
 
   const [isEditing, setIsEditing] = useState(false);
 

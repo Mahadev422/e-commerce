@@ -13,25 +13,19 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    initializeProduct: (state, action) => {
-      console.log('object')
-      state.totalProducts = [...products];
-    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
-        console.log('pending')
         state.loading = true;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.totalProducts = action.payload;
-        console.log('fulfiled')
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
-        console.log('rejected');
+        state.totalProducts = products;
       })
   }
 });

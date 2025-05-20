@@ -8,8 +8,8 @@ const ProfileSidebar = () => {
 
   const location = useLocation();
   const active = location.pathname;
-
-  const userData = {};
+  const { userDetails } = useSelector((state) => state.auth)
+  const userData = {...userDetails};
 
   return (
     <motion.div 

@@ -1,8 +1,22 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import ProfileSidebar from '../components/profile-comp/ProfileSidebar';
-import { Outlet } from 'react-router-dom';
+import Loader from '../components/extra/Loader';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchUserById } from '../store/fetch/user';
 
 const UserProfilePage = () => {
+  const { logged, loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!logged) return navigate('/log-in');
+    dispatch(fetchUserById(logged));
+  },[logged])
+
+  if(loading) return <Loader />
 
   return (
     <motion.div 
