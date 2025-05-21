@@ -76,7 +76,7 @@ const SignupPage = () => {
     if(validate(formData)) {
       dispatch(fetchSignup(formData));
       e.target.reset();
-      navigate('/');
+      navigate('/log-in');
     };  
   };
 
