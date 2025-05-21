@@ -1,7 +1,10 @@
 import FeatureCollection from "../components/product-page-comp/FeatureCollection";
+import Loader from '../components/extra/Loader'
 import { categories } from "../data/localData";
 
 const CategoriesPage = () => {
+
+  if(!categories) return <Loader />
 
   return (
     <div className="min-h-screen py-12 px-4">

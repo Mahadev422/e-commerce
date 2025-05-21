@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { FiTrash2, FiPlus, FiMinus } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { removeToCart } from '../../store/slices/authSlice';
 
 const ProductData = ({ cartItems }) => {
-  
-
+  const dispatch = useDispatch();
   const itemVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
@@ -35,6 +36,7 @@ const ProductData = ({ cartItems }) => {
               <div className="flex justify-between">
                 <h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
                 <button
+                  onClick={() => dispatch(removeToCart(item._id))}
                   className="text-gray-400 hover:text-red-500 hover:scale-125 transition"
                 >
                   <FiTrash2 />

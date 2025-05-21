@@ -2,10 +2,13 @@ import { FiHeart, FiStar } from 'react-icons/fi';
 import { MdOutlineShoppingCart, MdOutlineRemoveShoppingCart  } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, addToWishlist, removeToCart, removeToWishlist} from '../../store/slices/authSlice'
 
 const Products = ({ sortedProducts }) => {
+  const { wishList, cart } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  
   return (
     <div className="flex flex-wrap gap-3 m-2 mx-4 justify-center">
       <AnimatePresence>
@@ -15,10 +18,10 @@ const Products = ({ sortedProducts }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0}}
             transition={{duration: 0.3, delay: 0.1*index}}
-            className="flex-auto w-[300px] rounded-lg shadow-sm overflow-hidden hover:shadow-md hover:scale-[0.98] transition bg-white"
+            className="flex-auto rounded-lg shadow-sm overflow-hidden hover:shadow-md hover:scale-[0.98] transition bg-white"
           >
             {/* Product image */}
-              <div>
+              <div className='relative'>
               <Link to={`/product/${product._id}`} className="relative">
                 <motion.img
                   src={product.images[0]}
@@ -39,13 +42,15 @@ const Products = ({ sortedProducts }) => {
                 )}
                 
               </Link>
-              {true ? (<motion.button
+              {wishList.includes(product._id) ? (<motion.button
+              onClick={() => dispatch(removeToWishlist(product._id))}
               className='absolute top-2 right-2 p-2 rounded-full bg-red-100 text-red-500 shadow-md hover:bg-gray-100'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               <FiHeart className='h-5 w-5 fill-current' />
             </motion.button>) : (<motion.button
+              onClick={() => dispatch(addToWishlist(product._id))}
               className='absolute top-2 right-2 p-2 rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-100'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -103,35 +108,37 @@ const Products = ({ sortedProducts }) => {
                   </motion.span>
                 )}
               </div>
+              <div className='relative'>
               <AnimatePresence mode="wait">
-                {false ? (
+                {cart.includes(product._id) ? (
                   <motion.button
+                    onClick={() => dispatch(removeToCart(product._id))}
                     key={`remove-${product._id}`}
-                    className="mt-4 w-full flex items-center justify-center bg-gray-200 text-black py-2 px-4 rounded-md hover:bg-gray-300 transition"
+                    className="absolute -top-13 -right-2 flex items-center justify-center bg-gray-200 text-black py-2 px-4 rounded-md hover:bg-gray-300 transition"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     whileTap={{rotateX: 90}}
                     transition={{duration: 0.2 }}
                   >
-                    <MdOutlineRemoveShoppingCart className="mr-2 h-6 w-6" />
-                    Remove
+                    <MdOutlineRemoveShoppingCart className="h-5 w-5" />
                   </motion.button>
                 ) : (
                   <motion.button
+                    onClick={() => dispatch(addToCart(product._id))}
                     key={`add-${product._id}`}
-                    className="mt-4 w-full flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
+                    className="absolute -top-13 -right-2 flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     whileTap={{rotateX: 90}}
                     transition={{duration: 0.2 }}
                   >
-                    <MdOutlineShoppingCart className="mr-2 h-6 w-6" />
-                    Add
+                    <MdOutlineShoppingCart className="h-5 w-5" />
                   </motion.button>
                 )}
               </AnimatePresence>
+              </div>
             </div>
           </motion.div>
         ))}

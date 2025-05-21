@@ -1,20 +1,25 @@
 import Products from '../components/product-page-comp/Products';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loader from '../components/extra/Loader';
 
 const FavouritePage = () => {
 
   const { totalProducts } = useSelector(state => state.products);
-  const sortedProducts = totalProducts.filter((product) => product.isNewProduct);
+  const { wishList, loading } = useSelector((state) => state.auth);
+  const ids = [...wishList];
+
+  const sortedProducts = totalProducts.filter(product => ids.includes(product._id));
+
+  if(loading) return <Loader />
 
   return (
     <div>
-      <div className="p-3">
+      <div className="p-6">
           <h1 className="text-3xl font-bold text-gray-900">Your Favourites</h1>
-          <p className="mt-2 text-gray-600">Browse more Products</p>
         </div>
-        <div className='m-3'>
-          {sortedProducts.length === 0 ? (
+        <div>
+          {ids.length === 0 ? (
         <div className="bg-white p-8 rounded-lg shadow text-center">
           <h2 className="text-xl font-medium text-gray-700 mb-4">No favourite products found</h2>
           <Link to='/product'

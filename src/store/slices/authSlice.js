@@ -1,20 +1,42 @@
 // cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUser, fetchUserById } from '../fetch/user';
+import { fetchUser, fetchUserById, updateUserCart } from '../fetch/user';
 
-const user = JSON.parse(localStorage.getItem('logged'))
+const userId = JSON.parse(localStorage.getItem('logged'))
 const initialState = {
-  logged: user || false,
+  logged: userId || false,
   userDetails: null,
   loading: false,
-  wishList: null,
-  cart: null
+  wishList: [],
+  cart: []
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    addToCart: (state, action) => {
+      const id = action.payload;
+      if(!id) return;
+      state.cart.push(id);
+      updateUserCart(userId, 'cart', [...state.cart]);
+    },
+    removeToCart: (state, action) => {
+      const id = action.payload;
+      if(!id) return;
+      state.cart = state.cart.filter(idx => idx !== id);
+      updateUserCart(userId, 'cart', [...state.cart]);
+    },
+    addToWishlist: (state, action) => {
+      const id = action.payload;
+      state.wishList.push(id);
+      updateUserCart(userId, 'wishlist', [...state.wishList]);
+    },
+    removeToWishlist: (state, action) => {
+      const id = action.payload;
+      state.wishList = state.wishList.filter((idx) => idx !== id);
+      updateUserCart(userId, 'wishlist', [...state.wishList]);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -22,7 +44,7 @@ const authSlice = createSlice({
       state.loading = true;
     })
     .addCase(fetchUser.fulfilled, (state) => {
-      state.loading = true;
+      state.loading = false;
     })
     .addCase(fetchUser.rejected, (state) => {
       state.loading = false;
@@ -31,15 +53,15 @@ const authSlice = createSlice({
       state.loading = true;
     })
     .addCase(fetchUserById.fulfilled, (state, action) => {
-      state.loading = false;
       const userData = action.payload;
       state.userDetails = userData;
       state.cart = userData.cart;
       state.wishList = userData.wishlist;
       state.logged = userData.id;
+      state.loading = false;
     })
   }
 });
 
-export const { } = authSlice.actions;
+export const { addToCart, addToWishlist, removeToCart, removeToWishlist } = authSlice.actions;
 export default authSlice.reducer;

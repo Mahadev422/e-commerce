@@ -6,19 +6,17 @@ import ProductSpecifications from '../components/product-profile/ProductSpecific
 import Loader from '../components/extra/Loader';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeToCart } from '../store/slices/authSlice';
 // import { useEffect } from 'react';
 //import { fetchProductById } from '../redux/fetching';
 
 const ProductProfile = () => {
-
+  const dispatch = useDispatch();
   const { id } = useParams();
   const { totalProducts } = useSelector(state => state.products);
+  const { cart } = useSelector((state) => state.auth)
 
   const product = totalProducts.find(p => p._id == id);
-
-  // useEffect(() => {
-  //   dispatch(fetchProductById(id))
-  // },[id, dispatch])
 
   if(!product) return <Loader />
 
@@ -94,14 +92,16 @@ const ProductProfile = () => {
 
             {/* Action Buttons */}
             <div className="flex text-center gap-3">
-              {false ? (
+              {cart.includes(product._id) ? (
                 <button
+                  onClick={() => dispatch(removeToCart(product._id))}
                   className="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-black rounded-md font-medium py-2 px-6 h-full transition hover:scale-[0.97] active:scale-[0.9]"
                 >
                   <MdOutlineRemoveShoppingCart className="h-6 w-6" />
                 </button>
               ) : (
                 <button
+                  onClick={() => dispatch(addToCart(product._id))}
                   className="flex items-center justify-center bg-blue-600 py-2 hover:bg-blue-700 text-white rounded-md font-medium px-6 h-full transition hover:scale-[0.97] active:scale-[0.9]"
                 >
                   <MdOutlineShoppingCart className="h-6 w-6" />
@@ -110,8 +110,8 @@ const ProductProfile = () => {
 
               <Link
                 onClick={() => {
-                  if (!cartStore.includes(id)) {
-                    dispatch(addToCart(id));
+                  if (!cart.includes(product._id)) {
+                    dispatch(addToCart(product._id));
                   }
                 }}
                 to="/cart"

@@ -17,7 +17,7 @@ const SettingsPage = () => {
   return (
     <div className="min-h-screen m-3">
       <div className="flex flex-wrap gap-10">
-        <div className="flex-auto md:w-65">
+        <div className="w-full">
           <h1 className="text-2xl font-bold text-gray-900 mb-6">Settings</h1>
           <nav className="space-y-1">
             {tabs.map((tab, idx) => <Link
@@ -32,7 +32,7 @@ const SettingsPage = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-auto bg-white shadow-sm rounded-lg overflow-hidden">
+        <div className="w-full bg-white shadow-sm rounded-lg overflow-hidden">
           <Outlet />
         </div>
       </div>

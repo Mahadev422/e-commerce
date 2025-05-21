@@ -24,13 +24,12 @@ const UserProfilePage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-wrap gap-8">
           {/* Sidebar */}
           <ProfileSidebar />
           {/* Main Content */}
           <motion.div 
-            className="flex-1 bg-white rounded-xl shadow-md overflow-hidden"
+            className="bg-white rounded-xl w-full shadow-md overflow-hidden"
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -40,7 +39,6 @@ const UserProfilePage = () => {
             </AnimatePresence>
           </motion.div>
         </div>
-      </div>
     </motion.div>
   );
 };

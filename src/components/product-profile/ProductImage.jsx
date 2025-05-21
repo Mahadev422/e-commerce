@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiHeart, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToWishlist, removeToWishlist } from '../../store/slices/authSlice';
 
 const ProductImage = ({ product }) => {
-
+  const dispatch = useDispatch();
   const [selectedImage, setSelectedImage] = useState(0);
+  const { wishList } = useSelector((state) => state.auth);
   
   const nextImage = () => {
     setSelectedImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
@@ -41,13 +44,15 @@ const ProductImage = ({ product }) => {
         >
           <FiChevronRight className="h-5 w-5" />
         </button>
-        {false ? (<motion.button
+        {wishList.includes(product._id) ? (<motion.button
+        onClick={() => dispatch(removeToWishlist(product._id))}
         className='absolute top-2 right-2 p-2 rounded-full bg-red-100 text-red-500 shadow-md hover:bg-gray-100'
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
         <FiHeart className='h-5 w-5 fill-current' />
       </motion.button>) : (<motion.button
+        onClick={() => dispatch(addToWishlist(product._id))}
         className='absolute top-2 right-2 p-2 rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-100'
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

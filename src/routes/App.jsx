@@ -3,17 +3,17 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
 import NotificationSystem from '../components/extra/NotificationSystem';
-import { initializeProduct } from '../store/slices/productSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchProducts } from '../store/fetch/products';
+import { fetchUserById } from '../store/fetch/user';
 
 function App() {
-  const url = useLocation();
   const dispatch = useDispatch();
+  const logged = useSelector((state) => state.auth.logged);
 
   useEffect(() => {
-    //dispatch(initializeProduct());
+    dispatch(fetchUserById(logged));
     dispatch(fetchProducts());
   },[0])
 
@@ -25,7 +25,6 @@ function App() {
           <div className="sticky top-13 h-screen z-10 bg-blue-50">
             <Sidebar />
           </div>
-
         {/* Main content area */}
         <main className="flex-1 overflow-y-auto">
           <Outlet />

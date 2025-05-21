@@ -50,3 +50,33 @@ export const fetchSignup = createAsyncThunk(
     }
   }
 );
+
+export const updateUserData = createAsyncThunk('auth/updateUserData',
+  async ({id, updatedData}, thunkAPI) => {
+    try {
+      const res = await fetch(`${URL}/update-user`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({id, updatedData}),
+      });
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue('Signup failed');
+    };
+  }
+);
+
+export const updateUserCart = async (id, key, value) => {
+    try {
+      const res = await fetch(`${URL}/update-cart`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({id, key, value}),
+      });
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.log('Signup failed');
+    };
+  };

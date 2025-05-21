@@ -6,21 +6,18 @@ const OrderSummary = ({ cartItems }) => {
 
   const navigate = useNavigate();
 
-  let subTotal = 0;
-  let save = 0;
-  let items = 0;
-  cartItems.forEach((element) => {
-    subTotal += element.price * element.quantity;
-    items += element.quantity;
-    if (!element.discountPrice) {
-      save += 0;
-    } else {
-      save += (element.price - element.discountPrice) * element.quantity;
-    }
-  });
-  const tax = 0.08 * subTotal;
-  const total = subTotal + tax - save;
-
+   const subTotal = cartItems.reduce(
+    (acc, item) => acc + (item.discountPrice || item.price) * item.quantity,
+    0
+  );
+  const tax = subTotal * 0.08;
+  const total = subTotal + tax;
+  const save = cartItems.reduce((acc, item) => {
+    return item.discountPrice
+      ? acc + (item.price - item.discountPrice) * item.quantity
+      : acc;
+  }, 0);
+  
   const handleBuy = () => {
     const totalAmt = total.toFixed(2);
     const saveAmt = save.toFixed(2)
