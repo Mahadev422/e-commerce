@@ -18,6 +18,7 @@ import CartPage from './routes/CartPage';
 import ProductProfile from './routes/ProductProfile';
 import LoginPage from './routes/LoginPage';
 import SignupPage from './routes/SignupPage';
+import NotFoundPage from './routes/PageNotFound';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
@@ -30,16 +31,20 @@ export const Router = createBrowserRouter([
       {path: 'cart', element: <CartPage />},
       {path: 'user-profile', element: <UserProfilePage />, children: [
         {index: true, element: <UserDetails />},
-        {path: 'order', element: <Order />}
+        {path: 'order', element: <Order />},
+        { path: '*', element: <NotFoundPage /> }
       ]},
       {path: 'setting', element: <SettingsPage />, children: [
       {index: true, element: <Security />},
       {path: 'notification', element: <Notification />},
       {path: 'billing', element: <Billing />},
-      {path: 'preference', element: <Preference />}
+      {path: 'preference', element: <Preference />},
+      { path: '*', element: <NotFoundPage /> }
     ]},
     {path: 'favourite', element: <FavouritePage />},
-    ]}, 
+    { path: '*', element: <NotFoundPage /> }
+    ]},
+    { path: '*', element: <NotFoundPage /> }
   ]},
   {path: 'log-in', element: <LoginPage />},
   {path: 'signup', element: <SignupPage />},

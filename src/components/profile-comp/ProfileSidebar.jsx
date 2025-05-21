@@ -7,14 +7,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const ProfileSidebar = () => {
 
   const location = useLocation();
-  const navigate = useNavigate();
   const active = location.pathname;
   const { userDetails } = useSelector((state) => state.auth);
   const userData = {...userDetails};
 
   const handleLogout = () => {
     localStorage.removeItem('logged');
-    return navigate('/log-in')
   }
 
   return (
@@ -54,7 +52,7 @@ const ProfileSidebar = () => {
             <span>My Orders</span>
           </motion.button>
         </Link>
-        <Link>
+        <a href="/log-in">
           <motion.button
           onClick={handleLogout}
             whileHover={{ x: 5 }}
@@ -64,7 +62,7 @@ const ProfileSidebar = () => {
             <FaSignOutAlt className="mr-3" />
             <span>Logout</span>
           </motion.button>
-        </Link>
+        </a>
       </nav>
     </motion.div>
   )
