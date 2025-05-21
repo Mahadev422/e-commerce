@@ -1,4 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom';
+import PrivateRoute from './routes/PrivateRoute';
 
 import App from './routes/App';
 import HomePage from './routes/HomePage';
@@ -16,27 +17,32 @@ import ProductListPage from './routes/ProductListPage';
 import CartPage from './routes/CartPage';
 import ProductProfile from './routes/ProductProfile';
 import LoginPage from './routes/LoginPage';
+import SignupPage from './routes/SignupPage';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
     {index: true, element: <HomePage />},
     {path: 'category', element: <CategoriesPage />},
     {path: 'products', element: <ProductListPage />},
-    {path: 'cart', element: <CartPage />},
-    {path: 'user-profile', element: <UserProfilePage />, children: [
-      {index: true, element: <UserDetails />},
-      {path: 'order', element: <Order />}
-    ]},
-    {path: 'setting', element: <SettingsPage />, children: [
+    {path: 'product/:id', element: <ProductProfile />},
+
+    {element: <PrivateRoute />, children: [
+      {path: 'cart', element: <CartPage />},
+      {path: 'user-profile', element: <UserProfilePage />, children: [
+        {index: true, element: <UserDetails />},
+        {path: 'order', element: <Order />}
+      ]},
+      {path: 'setting', element: <SettingsPage />, children: [
       {index: true, element: <Security />},
       {path: 'notification', element: <Notification />},
       {path: 'billing', element: <Billing />},
       {path: 'preference', element: <Preference />}
     ]},
     {path: 'favourite', element: <FavouritePage />},
-    {path: 'product/:id', element: <ProductProfile />},
+    ]}, 
   ]},
-  {path: 'log-in', element: <LoginPage />}
+  {path: 'log-in', element: <LoginPage />},
+  {path: 'signup', element: <SignupPage />},
 ],
 {basename: '/e-commerce'}
 );

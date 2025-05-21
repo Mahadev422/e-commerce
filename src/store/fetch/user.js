@@ -36,3 +36,19 @@ export const fetchUserById = createAsyncThunk(
     }
   }
 );
+
+export const fetchSignup = createAsyncThunk(
+  'auth/fetchSignup',
+  async (user, thunkAPI) => {
+    try {
+      const res = await fetch(`${URL}/signup-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user),
+      });
+      const data = await res.json();
+    } catch (err) {
+      return thunkAPI.rejectWithValue('Signup failed');
+    }
+  }
+);
