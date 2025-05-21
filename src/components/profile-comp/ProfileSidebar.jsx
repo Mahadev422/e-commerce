@@ -50,6 +50,7 @@ const ProfileSidebar = () => {
         </Link>
         <Link>
           <motion.button
+          onClick={() => localStorage.removeItem('logged')}
             whileHover={{ x: 5 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center w-full p-3 rounded-lg text-gray-600 hover:bg-gray-100"

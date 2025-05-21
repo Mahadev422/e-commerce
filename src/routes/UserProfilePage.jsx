@@ -12,7 +12,6 @@ const UserProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!logged) return navigate('/log-in');
     dispatch(fetchUserById(logged));
   },[logged])
 
