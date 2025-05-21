@@ -7,6 +7,8 @@ const initialState = {
   logged: user || false,
   userDetails: null,
   loading: false,
+  wishList: null,
+  cart: null
 };
 
 const authSlice = createSlice({
@@ -30,7 +32,11 @@ const authSlice = createSlice({
     })
     .addCase(fetchUserById.fulfilled, (state, action) => {
       state.loading = false;
-      state.userDetails = action.payload;
+      const userData = action.payload;
+      state.userDetails = userData;
+      state.cart = userData.cart;
+      state.wishList = userData.wishlist;
+      state.logged = userData.id;
     })
   }
 });

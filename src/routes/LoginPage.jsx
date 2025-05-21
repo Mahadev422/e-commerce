@@ -51,10 +51,10 @@ const LoginPage = () => {
       // Simulate API call
       try {
         dispatch(fetchUser(formData));
+        navigate('/');
       } catch (error) {
         console.error('Login error:', error);
       } finally {
-        navigate('/');
         e.target.reset();
       }
     }
@@ -176,7 +176,7 @@ const LoginPage = () => {
       <div className="mt-6 text-center">
         <p className="text-sm text-white">
           Don't have an account?{' '}
-          <Link to="/signup" className="font-medium text-blue-200 hover:text-blue-100">
+          <Link to="/signup" className="font-medium hover:bg-blue-400 text-blue-200 rounded p-1 hover:text-blue-100">
             Create one now
           </Link>
         </p>

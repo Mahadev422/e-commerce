@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchSignup } from '../store/fetch/user';
 
 const SignupPage = () => {
@@ -209,9 +209,9 @@ const SignupPage = () => {
 
           <div className="text-center text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="log-in" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="/log-in" className="font-medium text-indigo-600 hover:text-indigo-500">
               Sign in
-            </a>
+            </Link>
           </div>
         </form>
       </motion.div>

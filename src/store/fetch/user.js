@@ -22,7 +22,6 @@ export const fetchUser = createAsyncThunk(
 export const fetchUserById = createAsyncThunk(
   'auth/fetchUserById',
   async (id, thunkAPI) => {
-    console.log(id)
     try {
       const res = await fetch(`${URL}/get-user`, {
         method: 'POST',
@@ -46,7 +45,6 @@ export const fetchSignup = createAsyncThunk(
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
       });
-      const data = await res.json();
     } catch (err) {
       return thunkAPI.rejectWithValue('Signup failed');
     }
