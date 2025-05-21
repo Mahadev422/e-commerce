@@ -61,7 +61,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-[url('/e-commerce/loginBack.png')] bg-cover bg-center">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-[url('https://static.vecteezy.com/system/resources/thumbnails/011/635/825/small/abstract-square-interface-modern-background-concept-fingerprint-digital-scanning-visual-security-system-authentication-login-vector.jpg')] bg-cover bg-center">
   <div className="w-full max-w-md backdrop-blur-sm bg-white/10 p-8 rounded-lg shadow-md">
     
     <div className="text-center">
