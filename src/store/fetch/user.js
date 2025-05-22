@@ -12,7 +12,7 @@ export const fetchUser = createAsyncThunk(
         body: JSON.stringify(user),
       });
       const data = await res.json();
-      data.length == 24 ? localStorage.setItem('logged', JSON.stringify(data)) : localStorage.setItem('logged', false);
+      data.length === 24 ? localStorage.setItem('logged', JSON.stringify(data)) : null;
     } catch (err) {
       return thunkAPI.rejectWithValue('Login failed');
     }

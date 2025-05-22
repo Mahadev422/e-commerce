@@ -308,42 +308,4 @@ export const products = [
     }
   ];
 
-export const users = [
-  {
-    id: 1,
-    name: "Alice Johnson",
-    email: "alice@example.com",
-    password: "alice123", // Hashed in production
-    role: "admin",
-    avatar: "/avatars/alice.png",
-    createdAt: "2025-04-20T10:15:00Z"
-  },
-  {
-    id: 2,
-    name: "Bob Smith",
-    email: "bob@example.com",
-    password: "bob456",
-    role: "user",
-    avatar: "/avatars/bob.png",
-    createdAt: "2025-04-21T09:00:00Z"
-  },
-  {
-    id: 3,
-    name: "Charlie Davis",
-    email: "charlie@example.com",
-    password: "charlie789",
-    role: "moderator",
-    avatar: "/avatars/charlie.png",
-    createdAt: "2025-04-22T13:30:00Z"
-  },
-  {
-    id: 4,
-    name: "Diana Prince",
-    email: "diana@example.com",
-    password: "diana456",
-    role: "user",
-    avatar: "/avatars/diana.png",
-    createdAt: "2025-04-23T11:45:00Z"
-  }
-];
   

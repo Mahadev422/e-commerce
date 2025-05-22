@@ -51,7 +51,7 @@ const LoginPage = () => {
       // Simulate API call
       try {
         dispatch(fetchUser(formData));
-        navigate('/');
+        window.location.href = '/';
       } catch (error) {
         console.error('Login error:', error);
       } finally {
