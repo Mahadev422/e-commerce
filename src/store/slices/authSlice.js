@@ -8,7 +8,7 @@ const initialState = {
   userDetails: null,
   loading: false,
   wishList: [],
-  cart: []
+  cart: [],
 };
 
 const authSlice = createSlice({
