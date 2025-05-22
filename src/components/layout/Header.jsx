@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
 import { FaSearch } from "react-icons/fa";
 import { RiCloseLargeFill } from "react-icons/ri";
-import { button } from 'framer-motion/client';
+
 
 const Header = () => {
   const [search, setSearch] = useState(false);
 
   const { logged } = useSelector((state) => state.auth);
-
   const url = useLocation();
   const path = url.pathname;
 
