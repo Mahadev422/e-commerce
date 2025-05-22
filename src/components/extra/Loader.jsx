@@ -23,7 +23,7 @@ const Loader = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+    <div className="fixed inset-0 flex items-center justify-center">
       <motion.div
         className="flex space-x-3"
         variants={containerVariants}
