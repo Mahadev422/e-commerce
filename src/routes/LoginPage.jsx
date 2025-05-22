@@ -5,11 +5,12 @@ import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { fetchUser } from '../store/fetch/user';
+import Loader from '../components/extra/Loader';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const logged = useSelector((state) => state.auth.logged);
+  const { logged, loading } = useSelector((state) => state.auth);
   const [errors, setErrors] = useState({ email: '', password: '' });
   const [backErr, setBackErr] = useState({});
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const handleSubmit = async (e) => {
           [res.payload.field]: res.payload.message,
         });
       } else {
-        navigate('/');
+        window.location.href = '/';
       }
     } catch (error) {
       console.error('Unexpected error:', error);
@@ -69,6 +70,8 @@ const handleSubmit = async (e) => {
     }
   }
 };
+
+  if(loading) return <Loader />
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-[url('https://static.vecteezy.com/system/resources/thumbnails/011/635/825/small/abstract-square-interface-modern-background-concept-fingerprint-digital-scanning-visual-security-system-authentication-login-vector.jpg')] bg-cover bg-center">
@@ -82,9 +85,9 @@ const handleSubmit = async (e) => {
     <div className="mt-8">
 
       <div className='bg-gray-200
-      mt-2 text-sm font-semibold text-red-600 rounded text-center m-2'>
-        {backErr.email && <p>{backErr.email}</p>}
-        {backErr.password && <p>{backErr.password}</p>}
+      mt-2 text-sm font-semibold text-red-600 rounded-3xl text-center m-2'>
+        {backErr.email && <p className='p-2'>{backErr.email}</p>}
+        {backErr.password && <p className='p-2'>{backErr.password}</p>}
       </div>
 
       <form className="space-y-6" onSubmit={handleSubmit}>

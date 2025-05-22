@@ -5,20 +5,17 @@ import { Link } from "react-router-dom";
 import ProductData from "../components/cart-components/ProductData";
 import OrderSummary from "../components/cart-components/OrderSummary";
 import Loader from '../components/extra/Loader';
+import { useEffect } from "react";
+import { initializeCart } from "../store/slices/productSlice";
 
 const CartPage = () => {
-
-  const  products = useSelector(state => state.products.totalProducts);
+  const dispatch = useDispatch();
+  const  { cartItems } = useSelector(state => state.products);
   const { cart, loading } = useSelector((state) => state.auth);
 
-  const idSet = new Set(cart);
-
-  const cartItems = products
-    .filter(product => idSet.has(product._id))
-    .map(product => ({
-      ...product,
-      quantity: 1
-    }));
+  useEffect(() => {
+    dispatch(initializeCart(cart));
+  },[cart])
     
   if(loading) return <Loader />
 

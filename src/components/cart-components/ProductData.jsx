@@ -3,6 +3,7 @@ import { FiTrash2, FiPlus, FiMinus } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeToCart } from '../../store/slices/authSlice';
+import { updateQunatity } from '../../store/slices/productSlice';
 
 const ProductData = ({ cartItems }) => {
   const dispatch = useDispatch();
@@ -57,12 +58,14 @@ const ProductData = ({ cartItems }) => {
               </div>
               <div className="mt-4 flex items-center">
                 <button
+                  onClick={() => dispatch(updateQunatity({id: item._id, newQuantity: item.quantity - 1}))}
                   className="p-1 rounded-md border border-gray-300 hover:bg-gray-100"
                 >
                   <FiMinus className="h-4 w-4" />
                 </button>
                 <span className="mx-3 text-gray-700">{item.quantity}</span>
                 <button
+                  onClick={() => dispatch(updateQunatity({id: item._id, newQuantity: item.quantity + 1}))}
                   className="p-1 rounded-md border border-gray-300 hover:bg-gray-100"
                 >
                   <FiPlus className="h-4 w-4" />
