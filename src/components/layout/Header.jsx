@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
+import { FaSearch } from "react-icons/fa";
+import { RiCloseLargeFill } from "react-icons/ri";
+import { button } from 'framer-motion/client';
 
 const Header = () => {
   const [search, setSearch] = useState(false);
@@ -19,23 +22,12 @@ const Header = () => {
 
       {/* Right side - Icons */}
       <div className="flex items-center gap-5">
-        {search && <input className='bg-gray-200 border-2 rounded p-1 w-[90%]' type="text" placeholder='Search'/>}
-        <button onClick={() => setSearch(!search)} className="p-1 rounded-full hover:bg-gray-200">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </button>
+        {search && <input className='flex-auto border-2 rounded-2xl p-1' type="text" placeholder='Search'/>}
+        {!search ? <button onClick={() => setSearch(!search)} >
+          <FaSearch className='h-6 w-6'/>
+        </button> : <button onClick={() => setSearch(!search)}>
+          <RiCloseLargeFill className='h-6 w-6' />
+          </button>}
 
         {/* Profile */}
         <div className={`flex items-center ${path.startsWith('/user-profil') ? 'bg-blue-300 text-blue-800' : 'bg-blue-100'} bg-blue-100 rounded-t-xl gap-2 p-1`}>

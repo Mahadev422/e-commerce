@@ -11,6 +11,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const logged = useSelector((state) => state.auth.logged);
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const [backErr, setBackErr] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,22 +44,31 @@ const LoginPage = () => {
     return valid;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const formData = Object.fromEntries(data.entries());
-    if (validateForm(formData.email, formData.password)) {
-      // Simulate API call
-      try {
-        dispatch(fetchUser(formData));
-        window.location.href = '/';
-      } catch (error) {
-        console.error('Login error:', error);
-      } finally {
-        e.target.reset();
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const formData = Object.fromEntries(data.entries());
+
+  setBackErr({}); // 🧹 clear backend errors
+  if (validateForm(formData.email, formData.password)) {
+    try {
+      const res = await dispatch(fetchUser(formData));
+
+      if (fetchUser.rejected.match(res)) {
+        setBackErr({
+          [res.payload.field]: res.payload.message,
+        });
+      } else {
+        navigate('/');
       }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      setBackErr({ general: 'Something went wrong. Please try again.' });
+    } finally {
+      e.target.reset();
     }
-  };
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-[url('https://static.vecteezy.com/system/resources/thumbnails/011/635/825/small/abstract-square-interface-modern-background-concept-fingerprint-digital-scanning-visual-security-system-authentication-login-vector.jpg')] bg-cover bg-center">
@@ -69,8 +79,14 @@ const LoginPage = () => {
         Sign in to your account
       </h2>
     </div>
-
     <div className="mt-8">
+
+      <div className='bg-gray-200
+      mt-2 text-sm font-semibold text-red-600 rounded text-center m-2'>
+        {backErr.email && <p>{backErr.email}</p>}
+        {backErr.password && <p>{backErr.password}</p>}
+      </div>
+
       <form className="space-y-6" onSubmit={handleSubmit}>
         {/* Email */}
         <div>

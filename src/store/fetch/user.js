@@ -6,15 +6,23 @@ export const fetchUser = createAsyncThunk(
   'auth/fetchUser',
   async (user, thunkAPI) => {
     try {
-      const res = await fetch(`${URL}/login-user`, {
+      const res = await fetch(`https://node-authentication-d8r6.onrender.com/auth/log-in`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
       });
       const data = await res.json();
-      data.length === 24 ? localStorage.setItem('logged', JSON.stringify(data)) : null;
+      console.log(data);
+      if (!res.ok) {
+        // Backend sent error with status code
+        return thunkAPI.rejectWithValue(data);  // data = {field: 'email'/'password', message: 'Error msg'}
+      }
+
+      // Success: store user id or token etc.
+      localStorage.setItem('logged', JSON.stringify(data.userId));
+      return data; // return user id or token
     } catch (err) {
-      return thunkAPI.rejectWithValue('Login failed');
+      return thunkAPI.rejectWithValue({ field: 'general', message: 'Login failed. Try again.' });
     }
   }
 );

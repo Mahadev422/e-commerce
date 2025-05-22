@@ -28,7 +28,7 @@ const ProfileSidebar = () => {
       <FaUser className="text-indigo-500 text-4xl" />
     </div>
     <h3 className="text-lg font-semibold text-gray-800">{userData.name || 'name'}</h3>
-    <p className="text-sm text-gray-500">UID: {userData.id}</p>
+    <p className="text-sm text-gray-500">Premium member</p>
   </div>
 
   {/* Navigation Section */}

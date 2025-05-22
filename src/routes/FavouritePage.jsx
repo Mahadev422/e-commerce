@@ -22,7 +22,7 @@ const FavouritePage = () => {
           {ids.length === 0 ? (
         <div className="bg-white p-8 rounded-lg shadow text-center">
           <h2 className="text-xl font-medium text-gray-700 mb-4">No favourite products found</h2>
-          <Link to='/product'
+          <Link to='/products'
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
           >
             Shop More
