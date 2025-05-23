@@ -49,14 +49,14 @@ const Order = () => {
                     </span>
 
                     <p
-                      className="text-sm text-gray-700 truncate max-w-[180px]"
+                      className="text-sm text-gray-700 truncate overflow-hidden whitespace-nowrap max-w-[180px] md:max-w-none"
                       title={`Order ID: ${order._id}`}
                     >
                       Order ID: {order._id}
                     </p>
 
                     <p
-                      className="text-sm text-gray-500 truncate max-w-[180px]"
+                      className="text-sm text-gray-500 truncate overflow-hidden whitespace-nowrap max-w-[180px] md:max-w-none"
                       title={`Placed on: ${dateString} ${timeString}`}
                     >
                       Placed on: {dateString} {timeString}
