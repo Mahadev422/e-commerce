@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLock, FaEdit } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
+import { updateUserData } from "../../store/fetch/user";
 
 const UserDetails = () => {
   const nameRef = useRef();
@@ -55,7 +56,7 @@ const UserDetails = () => {
               whileTap={{ scale: 0.95 }}
               className="px-4 py-2 bg-indigo-600 text-white rounded-lg"
               onClick={() => {
-                //handleUpdate();
+                handleUpdate();
                 setIsEditing(false);
               }}
             >

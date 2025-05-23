@@ -4,7 +4,7 @@ import Loader from '../components/extra/Loader';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchUserById } from '../store/fetch/user';
+import { fetchOrders } from '../store/fetch/order';
 
 const UserProfilePage = () => {
   const { logged, loading } = useSelector((state) => state.auth);
@@ -12,7 +12,7 @@ const UserProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchUserById(logged));
+    dispatch(fetchOrders(logged));
   },[logged])
 
   if(loading) return <Loader />

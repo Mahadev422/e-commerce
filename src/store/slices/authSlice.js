@@ -1,6 +1,6 @@
 // cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUser, fetchUserById, updateUserCart } from '../fetch/user';
+import { fetchUser, fetchUserById, updateUserCart, updateUserData } from '../fetch/user';
 
 const userId = JSON.parse(localStorage.getItem('logged'))
 const initialState = {
@@ -58,6 +58,16 @@ const authSlice = createSlice({
       state.cart = userData.cart;
       state.wishList = userData.wishlist;
       state.logged = userData.id;
+      state.loading = false;
+    })
+    .addCase(updateUserData.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(updateUserData.fulfilled, (state, action) => {
+      state.userDetails = action.payload;
+      state.loading = false;
+    })
+    .addCase(updateUserData.rejected, (state) => {
       state.loading = false;
     })
   }

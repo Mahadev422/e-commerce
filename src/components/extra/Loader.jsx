@@ -33,7 +33,7 @@ const Loader = () => {
         {[0, 1, 2, 3, 4].map((index) => (
           <motion.div
             key={index}
-            className="w-5 h-5 rounded-full bg-blue-600"
+            className="w-3 h-3 rounded-full bg-blue-600"
             variants={dotVariants}
           />
         ))}

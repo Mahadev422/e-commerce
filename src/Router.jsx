@@ -20,6 +20,7 @@ import LoginPage from './routes/LoginPage';
 import SignupPage from './routes/SignupPage';
 import NotFoundPage from './routes/PageNotFound';
 import AdminPanel from './routes/AdminPanel';
+import PaymentPage from './routes/PaymentPage';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
@@ -49,6 +50,7 @@ export const Router = createBrowserRouter([
   ]},
   {path: 'log-in', element: <LoginPage />},
   {path: 'signup', element: <SignupPage />},
-  {path: 'admin', element: <AdminPanel />}
+  {path: 'admin', element: <AdminPanel />},
+  {path: 'payment', element: <PaymentPage />}
 ]
 );

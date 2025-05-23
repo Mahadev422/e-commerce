@@ -1,37 +1,44 @@
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { orderProduct, totalAmount } from "../../store/slices/orderSlice";
 
 const OrderSummary = ({ cartItems }) => {
-
+  const { logged } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-   const subTotal = cartItems.reduce(
-    (acc, item) => acc + (item.discountPrice || item.price) * item.quantity,
-    0
-  );
-  const tax = subTotal * 0.08;
-  const total = subTotal + tax;
-  const save = cartItems.reduce((acc, item) => {
-    return item.discountPrice
-      ? acc + (item.price - item.discountPrice) * item.quantity
-      : acc;
-  }, 0);
-  
+  let subTotal = 0;
+  let save = 0;
+  let items = 0;
+  cartItems.forEach((element) => {
+    subTotal += element.price * element.quantity;
+    items += element.quantity;
+    if (!element.discountPrice) {
+      save += 0;
+    } else {
+      save += (element.price - element.discountPrice) * element.quantity;
+    }
+  });
+  const tax = 0.08 * subTotal;
+  const total = subTotal + tax - save;
+
   const handleBuy = () => {
     const totalAmt = total.toFixed(2);
     const saveAmt = save.toFixed(2)
     const products = cartItems.map(({_id, quantity}) => ({productId: _id, quantity}));
 
     const orderData = {
-      userId,
+      userId: logged,
       totalAmt,
       saveAmt,
       items,
       products,
     };
+    dispatch(totalAmount(totalAmt));
+    dispatch(orderProduct(orderData));
+    navigate('/payment');
   }
-
   return (
     <section>
       {/* Promo Code */}

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const Order = () => {
 
-  const orders = []
+  const {orders} = useSelector((state) => state.order)
   
   return (
     <motion.div
