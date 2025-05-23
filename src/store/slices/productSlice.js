@@ -1,6 +1,5 @@
 // cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { products } from '../../data/localData';
 import { fetchProducts } from '../fetch/products';
 
 const initialState = {
@@ -42,7 +41,6 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
-        state.totalProducts = products;
       })
   }
 });

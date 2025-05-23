@@ -89,7 +89,7 @@ const Products = ({ sortedProducts }) => {
                       animate={{ scale: [1, 1.05, 1] }}
                       transition={{ duration: 0.3 }}
                     >
-                      ${product.discountPrice.toFixed(2)}
+                      ₹{product.discountPrice.toFixed(2)}
                     </motion.span>
                     <span className="ml-2 text-sm text-gray-500 line-through">${product.price.toFixed(2)}</span>
                     <span className="ml-2 text-xs bg-red-100 text-red-800 px-1.5 py-0.5 rounded">
@@ -104,7 +104,7 @@ const Products = ({ sortedProducts }) => {
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 0.3 }}
                   >
-                    ${product.price.toFixed(2)}
+                    ₹{product.price.toFixed(2)}
                   </motion.span>
                 )}
               </div>

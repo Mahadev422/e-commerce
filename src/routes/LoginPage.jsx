@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { fetchUser } from '../store/fetch/user';
 import Loader from '../components/extra/Loader';
+import { div } from 'framer-motion/client';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -71,12 +72,14 @@ const handleSubmit = async (e) => {
   }
 };
 
-  if(loading) return <Loader />
+  //if(loading) return <Loader />
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-[url('https://static.vecteezy.com/system/resources/thumbnails/011/635/825/small/abstract-square-interface-modern-background-concept-fingerprint-digital-scanning-visual-security-system-authentication-login-vector.jpg')] bg-cover bg-center">
   <div className="w-full max-w-md backdrop-blur-sm bg-white/10 p-8 rounded-lg shadow-md">
-    
+
+    {loading &&<Loader />}
+
     <div className="text-center">
       <h2 className="mt-6 text-3xl font-extrabold text-white">
         Sign in to your account

@@ -19,6 +19,7 @@ import ProductProfile from './routes/ProductProfile';
 import LoginPage from './routes/LoginPage';
 import SignupPage from './routes/SignupPage';
 import NotFoundPage from './routes/PageNotFound';
+import AdminPanel from './routes/AdminPanel';
 
 export const Router = createBrowserRouter([
   {path: '/', element: <App />, children: [
@@ -48,5 +49,6 @@ export const Router = createBrowserRouter([
   ]},
   {path: 'log-in', element: <LoginPage />},
   {path: 'signup', element: <SignupPage />},
+  {path: 'admin', element: <AdminPanel />}
 ]
 );

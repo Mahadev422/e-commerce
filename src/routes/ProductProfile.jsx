@@ -1,14 +1,11 @@
 import { FiStar } from 'react-icons/fi';
 import { MdOutlineShoppingCart, MdOutlineRemoveShoppingCart  } from "react-icons/md";
-import { IoReturnDownBack } from "react-icons/io5";
 import ProductImage from '../components/product-profile/ProductImage';
 import ProductSpecifications from '../components/product-profile/ProductSpecifications';
 import Loader from '../components/extra/Loader';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeToCart } from '../store/slices/authSlice';
-// import { useEffect } from 'react';
-//import { fetchProductById } from '../redux/fetching';
 
 const ProductProfile = () => {
   const dispatch = useDispatch();
@@ -47,10 +44,12 @@ const ProductProfile = () => {
             {/* Price */}
             <div className="mb-6">
               <div className="flex items-center">
-                {product.discountPrice && <span className="text-3xl font-bold text-gray-900">${product.discountPrice.toFixed(2)}</span>}
+                <span className="text-3xl font-bold text-gray-900">₹
+                  {(product.discountPrice) ? product.discountPrice.toFixed(2) : product.price.toFixed(2)}
+                </span>
                 {product.discountPrice && (
                   <>
-                    <span className="ml-3 text-xl text-gray-500 line-through">${product.price.toFixed(2)}</span>
+                    <span className="ml-3 text-xl text-gray-500 line-through">₹{product.price.toFixed(2)}</span>
                     <span className="ml-2 bg-red-100 text-red-800 text-sm font-medium px-2 py-0.5 rounded">
                       {Math.round((1 - product.discountPrice / product.price) * 100)}% OFF
                     </span>

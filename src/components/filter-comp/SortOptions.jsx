@@ -1,8 +1,19 @@
+import { useDispatch } from "react-redux";
+import { allProducts, highToLow, lowToHigh } from "../../store/slices/filterSlice";
 
 const SortOptions = ({ length }) => {
+  const dispatch = useDispatch()
 
   const handleFilter = (value) => {
-    console.log(value);
+    if(value === 'All') {
+      dispatch(allProducts());
+    }
+    else if (value === 'high-low') {
+      dispatch(highToLow());
+    }
+    else {
+      dispatch(lowToHigh());
+    }
   };
 
   return (
