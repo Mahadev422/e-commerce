@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { FaPaypal, FaApplePay, FaLock } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
-import { SiGooglepay } from "react-icons/si";
-import { Link } from "react-router-dom";
-import { IoReturnDownBack } from "react-icons/io5";
+import { motion } from "framer-motion";
+import { SiGooglepay, SiPhonepe } from "react-icons/si";
+import { HiOutlineCash } from "react-icons/hi";
 import PaymentComplete from "../components/payment comp/PaymentComplete";
 import PaymentMethod from "../components/payment comp/PaymentMethod";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,11 +17,10 @@ const PaymentPage = () => {
 
   const handleSubmit = () => {
     if (Object.keys(order).length == 0) {
-
-      return window.location.href = '/cart';
+      return (window.location.href = "/cart");
     }
-      setSuccess(true);
-      dispatch(postOrder(order));
+    setSuccess(true);
+    dispatch(postOrder(order));
   };
 
   if (success) {
@@ -61,8 +59,8 @@ const PaymentPage = () => {
           <div>
             {paymentMethod === "credit" && <PaymentCredit />}
 
-            {(paymentMethod === "paypal" ||
-              paymentMethod === "apple" ||
+            {(paymentMethod === "cod" ||
+              paymentMethod === "phone-pe" ||
               paymentMethod === "google") && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -72,23 +70,26 @@ const PaymentPage = () => {
                 className="text-center"
               >
                 <div className="bg-gray-100 p-6 rounded-lg mb-6">
-                  {paymentMethod === "paypal" && (
-                    <FaPaypal className="text-4xl text-blue-500 mx-auto mb-4" />
+                  {paymentMethod === "cod" && (
+                    <HiOutlineCash className="text-4xl text-blue-500 mx-auto mb-4" />
                   )}
-                  {paymentMethod === "apple" && (
-                    <FaApplePay className="text-4xl text-black mx-auto mb-4" />
+                  {paymentMethod === "phone-pe" && (
+                    <SiPhonepe className="text-4xl text-black mx-auto mb-4" />
                   )}
                   {paymentMethod === "google" && (
                     <SiGooglepay className="text-4xl text-gray-800 mx-auto mb-4" />
                   )}
                   <p className="text-gray-600 mb-4">
-                    You'll be redirected to{" "}
-                    {paymentMethod === "paypal"
-                      ? "PayPal"
-                      : paymentMethod === "apple"
-                      ? "Apple Pay"
-                      : "Google Pay"}{" "}
-                    to complete your payment securely.
+                    {paymentMethod === "cod"
+                      ? ""
+                      : `You'll be redirected to ${" "} ${
+                          paymentMethod === "credit"
+                            ? "credit"
+                            : paymentMethod === "phone-pe"
+                            ? "Phone-Pe"
+                            : "Google Pay"
+                        } ${" "}
+                    to complete your payment securely.`}
                   </p>
                 </div>
               </motion.div>
@@ -99,7 +100,7 @@ const PaymentPage = () => {
               whileTap={{ scale: 0.99 }}
               onClick={handleSubmit}
             >
-              Pay ₹ {total}
+              {paymentMethod === "cod" ? "Pay on Delivery" : `Pay ₹ ${total}`}
             </motion.button>
           </div>
         </div>

@@ -22,7 +22,7 @@ const PaymentComplete = () => {
       </motion.div>
       <h2 className="text-2xl font-bold text-gray-800 mb-2">Payment Successful!</h2>
       <p className="text-gray-600 mb-6">Your order has been placed successfully.</p>
-      <a href="/"
+      <a href="/user-profile/order"
         className="flex justify-center bg-indigo-600 text-white py-3 rounded-lg font-medium"
       >
         Back to Shopping

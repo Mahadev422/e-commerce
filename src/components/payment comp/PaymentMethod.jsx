@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { FaCreditCard, FaPaypal, FaApplePay } from 'react-icons/fa';
-import { SiGooglepay } from 'react-icons/si';
+import { FaCreditCard, FaApplePay } from 'react-icons/fa';
+import { SiGooglepay, SiPhonepe } from 'react-icons/si';
+import { HiOutlineCash } from "react-icons/hi";
 
 const PaymentMethod = ({paymentMethod, setPaymentMethod}) => {
 
@@ -20,20 +21,20 @@ const PaymentMethod = ({paymentMethod, setPaymentMethod}) => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`flex flex-col items-center justify-center p-3 rounded-lg border ${paymentMethod === 'paypal' ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200'}`}
-          onClick={() => setPaymentMethod('paypal')}
+          className={`flex flex-col items-center justify-center p-3 rounded-lg border ${paymentMethod === 'cod' ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200'}`}
+          onClick={() => setPaymentMethod('cod')}
         >
-          <FaPaypal className={`text-xl ${paymentMethod === 'paypal' ? 'text-indigo-600' : 'text-gray-400'}`} />
-          <span className={`text-xs mt-1 ${paymentMethod === 'paypal' ? 'text-indigo-600 font-medium' : 'text-gray-500'}`}>PayPal</span>
+          <HiOutlineCash className={`text-xl ${paymentMethod === 'cod' ? 'text-indigo-600' : 'text-gray-400'}`} />
+          <span className={`text-xs mt-1 ${paymentMethod === 'paypal' ? 'text-indigo-600 font-medium' : 'text-gray-500'}`}>Cash on delivery</span>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`flex flex-col items-center justify-center p-3 rounded-lg border ${paymentMethod === 'apple' ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200'}`}
-          onClick={() => setPaymentMethod('apple')}
+          className={`flex flex-col items-center justify-center p-3 rounded-lg border ${paymentMethod === 'phone-pe' ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200'}`}
+          onClick={() => setPaymentMethod('phone-pe')}
         >
-          <FaApplePay className={`text-xl ${paymentMethod === 'apple' ? 'text-indigo-600' : 'text-gray-400'}`} />
-          <span className={`text-xs mt-1 ${paymentMethod === 'apple' ? 'text-indigo-600 font-medium' : 'text-gray-500'}`}>Apple Pay</span>
+          <SiPhonepe className={`text-xl ${paymentMethod === 'phone-pe' ? 'text-indigo-600' : 'text-gray-400'}`} />
+          <span className={`text-xs mt-1 ${paymentMethod === 'phone-pe' ? 'text-indigo-600 font-medium' : 'text-gray-500'}`}>Phone-Pe</span>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
