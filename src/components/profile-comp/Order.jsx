@@ -10,7 +10,7 @@ const Order = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="p-6"
+      className="p-3"
     >
       <h2 className="text-2xl font-bold text-gray-800 mb-6">My Orders</h2>
 
@@ -31,7 +31,7 @@ const Order = () => {
             return (
               <motion.div
                 key={order._id}
-                className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all duration-200"
+                className="border border-gray-200 rounded-lg p-2 hover:shadow-md transition-all duration-200"
               >
                 <div className="flex justify-between flex-wrap gap-2">
                   {/* LEFT SIDE */}
