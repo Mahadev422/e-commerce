@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FaFacebook,
   FaTwitter,
@@ -9,6 +10,35 @@ import { MdPayment } from "react-icons/md";
 import { RiCustomerService2Fill } from "react-icons/ri";
 
 const Footer = () => {
+  const [feedback, setFeedback] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const rating = 'positive';
+  try {
+    const response = await fetch('https://node-authentication-d8r6.onrender.com/auth/feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ rating, feedback }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      setSubmitted(result);
+      setFeedback('');
+    } else {
+      console.log('Error submitting feedback:', result);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+    setTimeout(() => setSubmitted(false), 3000);
+  };
+
   
   const socialMedia = [
     {
@@ -21,7 +51,7 @@ const Footer = () => {
     },
     {
       name: FaInstagram,
-      link: "#",
+      link: "https://www.instagram.com/rajmahadev422/",
     },
     {
       name: FaLinkedin,
@@ -106,20 +136,27 @@ const Footer = () => {
                   <p className="text-gray-300">+1 (555) 123-4567</p>
                 </div>
               </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Subscribe to Newsletter</h4>
+              {submitted ? (
+            <div className="p-4 bg-green-900/30 text-green-400 rounded-md">
+              {submitted}
+            </div>)
+              : (<div>
+                <h4 className="font-semibold mb-2">Your Feedback Help us.</h4>
                 <div className="flex">
                   <input
-                    type="email"
-                    placeholder="Your email"
+                  onChange={(e) => setFeedback(e.target.value)}
+                  value={feedback}
+                    type="text"
+                    placeholder="Your feedback"
                     className="px-3 py-2 bg-gray-800 text-white rounded-l focus:outline-none focus:ring-1 focus:ring-white w-full"
                   />
-                  <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r font-medium transition">
-                    Subscribe
+                  <button
+                  onClick={handleSubmit}
+                   className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r font-medium transition">
+                    send
                   </button>
                 </div>
-              </div>
+              </div>)}
             </div>
           </div>
         </div>
