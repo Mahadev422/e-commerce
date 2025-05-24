@@ -17,7 +17,10 @@ const authSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const id = action.payload;
-      if(!id) return;
+      if(!id || !state.logged) {
+        window.location.href = '/log-in';
+        return;
+      }
       state.cart.push(id);
       updateUserCart(userId, 'cart', [...state.cart]);
     },
@@ -29,6 +32,10 @@ const authSlice = createSlice({
     },
     addToWishlist: (state, action) => {
       const id = action.payload;
+      if(!id || !state.logged) {
+        window.location.href = '/log-in';
+        return;
+      }
       state.wishList.push(id);
       updateUserCart(userId, 'wishlist', [...state.wishList]);
     },

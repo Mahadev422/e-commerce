@@ -1,9 +1,9 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const PrivateRoute = () => {
   const isAuthenticated = !!localStorage.getItem('logged'); 
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/log-in" />;
+  return isAuthenticated ? <Outlet /> : window.location.href = '/log-in';
 };
 
 export default PrivateRoute;
